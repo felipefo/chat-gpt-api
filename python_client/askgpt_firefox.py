@@ -59,9 +59,12 @@ def ask_gpt(question):
             browser.save_screenshot("tela_depois_da_resposta.png")
             # Obtém a resposta
             response = browser.find_element(By.XPATH ,'//div[@data-message-author-role="assistant"]').text
+            browser.quit()  
             return response
     except NoSuchElementException:
         print("Elemento não encontrado na página.")   
+        
+         
     
 
 class RequestHandler(BaseHTTPRequestHandler):
