@@ -3,7 +3,11 @@ Generic service for chatgpt-3.5 using selenium web-driver
 
 # Init 
 
+```
+docker-compose build 
+
 docker-compose up 
+````
 
 # Usage 
 Make a http post request for localhost:8000 with params question
