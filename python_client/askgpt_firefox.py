@@ -55,7 +55,7 @@ def ask_gpt(question):
             submit_button.click()
             print("aguardando resposta")
             # Aguarda a resposta do ChatGPT
-            time.sleep(2)  # Espera 5 segundos para a resposta ser gerada
+            time.sleep(4)  # Espera 5 segundos para a resposta ser gerada
             browser.save_screenshot("tela_depois_da_resposta.png")
             # Obtém a resposta
             response = browser.find_element(By.XPATH ,'//div[@data-message-author-role="assistant"]').text
