@@ -39,7 +39,7 @@ def ask_gpt(question):
         browser.get(url)
         print("URL da pagina:" + browser.current_url)
         print("Titulo da pagina:" + browser.title)
-        time.sleep(2)  # Espera 3 segundos para garantir que a página esteja carregada
+        time.sleep(1)  # Espera 3 segundos para garantir que a página esteja carregada
         # Insere a pergunta no campo de entrada
         if browser is not None:       
             input_field = browser.find_element(By.ID , "prompt-textarea")
@@ -55,7 +55,7 @@ def ask_gpt(question):
             submit_button.click()
             print("aguardando resposta")
             # Aguarda a resposta do ChatGPT
-            time.sleep(4)  # Espera 5 segundos para a resposta ser gerada
+            time.sleep(2)  # Espera 5 segundos para a resposta ser gerada
             browser.save_screenshot("tela_depois_da_resposta.png")
             # Obtém a resposta
             response = browser.find_element(By.XPATH ,'//div[@data-message-author-role="assistant"]').text
