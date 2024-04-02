@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  selenium:
+    image: selenium/standalone-firefox:latest  # Você também pode usar standalone-firefox se preferir o Firefox
+    ports:
+      - "4444:4444"
+    networks:
+      - app
+        
+  python-client:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - selenium
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./python_client:/app
+    networks:
+      - app
+      
+networks:
+  app:
+    driver: bridge
