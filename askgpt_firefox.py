@@ -54,8 +54,17 @@ def ask_gpt(question):
             browser.save_screenshot("tela_antes_da_resposta.png")
             submit_button.click()
             print("aguardando resposta")
-            # Aguarda a resposta do ChatGPT
-            time.sleep(4)  # Espera 5 segundos para a resposta ser gerada
+            # Aguarda até que o botão "Stop generating" deixe de existir
+            while True:
+                counter = 0
+                try:
+                    stop_button = browser.find_element(By.XPATH , '//button[@aria-label="Stop generating"]')
+                    time.sleep(1)  # Aguarda 1 segundo antes de verificar novamente
+                    counter += 1
+                except NoSuchElementException:
+                    break  # Sai do loop quando o botão não é mais encontrado
+                if counter >= 30:
+                    break  # Sai do loop se passarem 30 verificações de término de geração da resposta
             browser.save_screenshot("tela_depois_da_resposta.png")
             # Obtém a resposta
             response = browser.find_element(By.XPATH ,'//div[@data-message-author-role="assistant"]').text
@@ -94,7 +103,3 @@ def run(server_class=HTTPServer, handler_class=RequestHandler, port=8000):
 
 if __name__ == "__main__":
     run()
-
-
-
-
